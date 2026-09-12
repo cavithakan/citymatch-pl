@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"npm:  $\\(npm -v 2>/dev/null || echo YOK\\)\")",
+      "Bash(npx -v)",
+      "Bash(echo \"npx:  $\\(npx -v 2>/dev/null || echo YOK\\)\")",
+      "Bash(echo \"git:  $\\(git --version 2>/dev/null || echo YOK\\)\")",
+      "Bash(psql --version)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --use-npm --no-turbopack --skip-install)"
+    ]
+  }
+}
