@@ -46,9 +46,6 @@ next-env.d.ts
 # Screenshots are generated from the running app
 screenshots/
 
-# Agent tooling dropped in by the Neon marketplace installer. Not part of the
-# project: third-party instructions for coding assistants, unrelated to how the
-# application is built or run.
 /.agents
 /.claude/skills
 /skills-lock.json
