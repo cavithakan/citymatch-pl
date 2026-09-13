@@ -1,36 +1,155 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CityMatch PL
 
-## Getting Started
+A guide to Poland's 66 cities with powiat status, drawn on a map of all 380 Polish counties,
+built entirely from official open data.
 
-First, run the development server:
+Someone moving to Kraków or leaving Katowice has to gather salaries from Statistics Poland,
+air quality from GIOŚ, the weather from IMGW and flat prices from a separate GUS publication —
+in different units, for different years, mostly in Polish only. CityMatch PL puts them in one
+place, on one map, in Polish and English.
+
+The map colours every county in the country, not only the 66 cities: GUS publishes the same
+eighteen series for all 380 powiats, and the request that fetches a city returns its
+neighbours in the same response. The guide still ranks and compares the cities — a county is
+the ground a city's figure is read against.
+
+**No API keys are required.** Every source used here is open and unauthenticated, so a fresh
+clone reaches a working site with nothing but a Postgres connection string.
+
+## What it does
+
+- **A 3D map of Poland** where each city rises and changes colour with the measure you pick.
+  Height and colour encode the same number, so the map stays readable in either channel alone.
+- **A profile per city** — 23 indicators across six themes, each with its rank among all 66
+  cities, its distance from the national median, and ten years of history.
+- **District figures for Warsaw**, the only Polish city whose dzielnice appear in the Local
+  Data Bank. Nine indicators stop at the city boundary, and the page says so rather than
+  hiding the gap.
+- **Weighted comparison** using Simple Additive Weighting, with the per-theme contribution
+  shown for every result. The comparison lives in the URL, so a link is the whole state.
+
+## Data sources
+
+| Source | Used for | Endpoint |
+| --- | --- | --- |
+| Statistics Poland (GUS), Local Data Bank | 18 annual indicators per city and per Warsaw district | `bdl.stat.gov.pl/api/v1` |
+| Chief Inspectorate of Environmental Protection (GIOŚ) | Air quality index, averaged across a city's stations | `api.gios.gov.pl/pjp-api/v1/rest` |
+| Institute of Meteorology (IMGW) | Current synoptic observations | `danepubliczne.imgw.pl/api/data/synop` |
+| Open-Meteo | A year of daily climate, reduced to four figures per city | `archive-api.open-meteo.com` |
+| National Bank of Poland (NBP) | Reference exchange rates | `api.nbp.pl` |
+| Wikipedia | One paragraph of description per city | `*.wikipedia.org/api/rest_v1` |
+| polska-geojson, OpenStreetMap | Administrative boundaries | GitHub / Nominatim |
+
+## Running it
+
+Requires Node 22 and PostgreSQL 14 or later.
 
 ```bash
+npm install
+cp .env.example .env          # then set DATABASE_URL
+npx prisma migrate deploy
+npm run seed                  # 66 cities, 314 counties, 18 Warsaw districts, indicators
+npm run refresh-data          # pulls the figures — see the note below
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm install` runs `prisma generate` for you — the client is written to
+`src/generated/prisma`, which is not committed, and every script that touches the database
+imports it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`npm run seed` needs no network: the boundary files are committed under `public/geo` and the
+coats of arms under `public/emblems`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### About `refresh-data`
 
-## Learn More
+Anonymous access to the Local Data Bank is limited to **100 requests per 15 minutes** and
+1,000 per 12 hours, and the API reports a refusal with HTTP 200 and an `errorResult` field
+rather than a 429. The client paces requests 11 seconds apart and backs off when refused, so
+a full refresh takes about 17 minutes. That is deliberate, not a hang — progress is printed
+as each indicator lands.
 
-To learn more about Next.js, take a look at the following resources:
+Passes can be run individually:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run refresh-data air derived   # re-take the hourly air quality snapshot only
+npm run refresh-data cities --only=avg_salary,tourist_beds   # just these series
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Setting `BDL_API_KEY` (free, from the GUS portal) raises the limits and drops the pacing to
+one second.
 
-## Deploy on Vercel
+### Regenerating the map geometry
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run fetch-geometry            # all layers; the city pass alone takes ~15 minutes
+npm run fetch-geometry powiats    # one layer: cities, powiats, voivodeships, districts
+npm run fetch-emblems             # coats of arms from Wikidata and Wikimedia Commons
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Rebuilds `public/geo` from the source boundaries: 66 city polygons matched to their GUS unit
+ids, the 314 land counties around them matched the same way, 16 voivodeship outlines
+simplified for the background layer, and Warsaw's 18 districts from Nominatim.
+
+County names are not unique — ten of them occur twice in Poland — so the match is made on
+name *and* voivodeship, the latter read from the TERYT code carried in every BDL unit id.
+
+## Documentation
+
+`docs/CityMatch-PL-documentation.docx` is the diploma submission, written against the
+faculty template. It is generated by `docs/build-docs.py`, which reads every code excerpt
+out of the working tree by line number, so the document cannot drift away from the code it
+quotes.
+
+## How the score works
+
+Each indicator is rescaled onto 0–100 across the cities being compared:
+
+```
+benefit (higher is better):  100 × (x − min) / (max − min)
+cost    (lower is better):   100 × (max − x) / (max − min)
+```
+
+Indicators are averaged within their theme, and themes are combined with the reader's
+weights. Two rules keep the result honest: a city is never penalised for a figure GUS did not
+publish — the indicator is dropped from its theme average rather than counted as zero — and a
+theme no city has data for is removed from the divisor so the remaining themes are not
+diluted.
+
+Because the scale is relative to the set being compared, the same city scores differently in
+different comparisons. That is a property of the method, and the site says so.
+
+## Tests
+
+```bash
+npm test
+```
+
+Covers the normalisation edge cases (a single city, identical values, non-finite input), the
+scoring invariants (contributions sum to the score, missing data is not a penalty), and the
+GeoJSON-to-Three.js conversion, including the polygon holes that enclosed municipalities
+create.
+
+## Layout
+
+```
+prisma/
+  schema.prisma      cities, districts, indicators, observations, response cache
+  indicators.ts      the metric catalogue, seeded as data rather than hardcoded
+  seed.ts
+scripts/
+  fetch-geometry.ts  boundaries → public/geo
+  refresh-data.ts    GUS, Open-Meteo and GIOŚ → Postgres
+src/lib/
+  providers/         one module per external source
+  scoring/           normalisation and Simple Additive Weighting
+  geo/projection.ts  d3-geo → Three.js shapes
+  cache.ts           TTL cache for the live sources
+src/components/
+  map/               the 3D scene
+  city/              indicator rows, rank gauges, sparklines
+```
+
+## Licence and attribution
+
+Data belongs to the institutions listed above and is used under their public-data terms.
+Boundaries derive from OpenStreetMap, © OpenStreetMap contributors, ODbL.

@@ -1,0 +1,116 @@
+{
+  "site": {
+    "name": "CityMatch PL",
+    "tagline": "Każde polskie miasto na prawach powiatu, na podstawie danych urzędowych",
+    "description": "Porównaj wszystkie 66 miast na prawach powiatu na podstawie danych GUS, GIOŚ i IMGW."
+  },
+  "nav": {
+    "explore": "Mapa",
+    "compare": "Porównaj",
+    "about": "O danych",
+    "language": "Język"
+  },
+  "home": {
+    "title": "Każde polskie miasto, na podstawie danych urzędowych",
+    "intro": "66 miast na prawach powiatu, opisanych {count} wskaźnikami z GUS, GIOŚ i Open-Meteo. Wybierz miarę, a mapa przeliczy się na nowo.",
+    "pickMetric": "Miara",
+    "highest": "Najwyższe",
+    "lowest": "Najniższe",
+    "hint": "Przeciągnij, aby obrócić · kliknij miasto, aby otworzyć profil",
+    "openProfile": "Otwórz profil",
+    "noData": "Dane nie zostały jeszcze wczytane. Uruchom `npm run refresh-data`, aby pobrać wskaźniki z GUS.",
+    "noDataShort": "Brak danych"
+  },
+  "city": {
+    "backToMap": "Wszystkie miasta",
+    "inVoivodeship": "województwo {voivodeship}",
+    "atAGlance": "W skrócie",
+    "liveNow": "Teraz",
+    "rankOf": "{rank} z {total}",
+    "vsMedian": "wobec mediany krajowej",
+    "noData": "Brak danych",
+    "notPublished": "Nie publikowane na tym poziomie",
+    "sources": "Źródła",
+    "fetchedAt": "Pobrano {date}",
+    "history": "Historia",
+    "districts": "Dzielnice, {city}",
+    "districtsIntro": "Warszawa jest jedynym polskim miastem, dla którego GUS publikuje dane w podziale na dzielnice. Na tym poziomie dostępnych jest {available} z {total} wskaźników; pozostałe wymieniono, aby luka w danych pozostała widoczna.",
+    "weatherStation": "Stacja meteorologiczna",
+    "airStations": "Stacje pomiarowe: {count}"
+  },
+  "compare": {
+    "title": "Zdecyduj, co się dla Ciebie liczy",
+    "intro": "Ustaw suwaki, aby określić wagę każdego obszaru. Ranking i mapa aktualizują się na bieżąco.",
+    "addCity": "Dodaj miasto",
+    "score": "Wynik",
+    "whyThisRank": "Dlaczego to miejsce",
+    "contribution": "Wkład",
+    "shareLink": "Skopiuj link do porównania",
+    "copied": "Skopiowano link",
+    "reset": "Zresetuj wagi",
+    "selectAtLeast": "Wybierz co najmniej dwa miasta."
+  },
+  "themes": {
+    "EARNINGS": "Zarobki i gospodarka",
+    "HOUSING": "Mieszkalnictwo",
+    "LABOUR": "Rynek pracy",
+    "SAFETY": "Bezpieczeństwo",
+    "ENVIRONMENT": "Środowisko",
+    "LIVING": "Klimat i życie"
+  },
+  "about": {
+    "title": "Skąd pochodzą te dane",
+    "sourcesTitle": "Źródła danych",
+    "methodTitle": "Jak liczony jest wynik",
+    "limitsTitle": "Czego te dane nie powiedzą",
+    "intro": "CityMatch PL zestawia na jednej stronie dane pięciu instytucji publicznych. Nie ma tu ankiet, szacunków ani ocen użytkowników, każdą liczbę publikuje wskazana obok instytucja i każdą można sprawdzić u źródła.",
+    "sources": {
+      "gus": "Główny Urząd Statystyczny, Bank Danych Lokalnych. Wynagrodzenia, ceny mieszkań, bezrobocie, podmioty gospodarcze, przestępczość, tereny zieleni, mieszkalnictwo. Dane roczne dla powiatów.",
+      "gios": "Główny Inspektorat Ochrony Środowiska. Polski indeks jakości powietrza, uśredniony ze wszystkich stacji pomiarowych w mieście.",
+      "imgw": "Instytut Meteorologii i Gospodarki Wodnej. Bieżące obserwacje synoptyczne, aktualizowane co godzinę.",
+      "openmeteo": "Archiwum Open-Meteo. Rok dobowych danych o temperaturze, opadach i usłonecznieniu, sprowadzony do czterech wskaźników na miasto.",
+      "nbp": "Narodowy Bank Polski. Kursy średnie walut.",
+      "osm": "OpenStreetMap i projekt polska-geojson. Granice administracyjne na mapie."
+    },
+    "method": "Każdy wskaźnik jest przeskalowany do przedziału 0-100 względem porównywanych miast, z kierunkiem ustalonym osobno, wysokie wynagrodzenie punktuje dodatnio, wysoka cena mieszkania nie. Wskaźniki są uśredniane w obrębie obszaru, a sześć obszarów łączy się według wybranych przez Ciebie wag. Metoda to Simple Additive Weighting; ponieważ skala jest względna, to samo miasto uzyskuje różne wyniki w różnych porównaniach.",
+    "limits": {
+      "district": "Warszawa jest jedynym polskim miastem, którego dzielnice występują w Banku Danych Lokalnych. Nawet tam dziewięć wskaźników z tego serwisu kończy się na granicy miasta, w tym wynagrodzenia, ceny mieszkań, bezrobocie i przestępczość.",
+      "health": "Łóżka szpitalne, przychodnie i żłobki publikowane są dla gmin, a nie dla miast, więc nie zostały uwzględnione.",
+      "air": "Wartość jakości powietrza używana na mapie i w wyniku to migawka z momentu ostatniego odświeżenia danych. Strony miast pokazują odczyt bieżący.",
+      "years": "Nie wszystkie serie publikowane są za ten sam rok. Każda liczba jest opisana rokiem, którego dotyczy, zamiast być sprowadzana do wspólnego.",
+      "counties": "Mapa koloruje wszystkie 380 polskich powiatów, ale przewodnik dotyczy 66 z nich, które są miastami. Powiaty pokazane są tymi samymi danymi GUS w tej samej skali i można je odczytać, wskazując je kursorem; nie są natomiast rankingowane, porównywane ani opisane osobną stroną — powiat to nie miejsce, do którego się przeprowadzasz, lecz tło, na którym czyta się wynik miasta.",
+      "countyGaps": "Pięciu miar brakuje dla powiatów: jakości powietrza oraz trzech wskaźników klimatycznych. Jakość powietrza pochodzi ze stacji pomiarowej GIOŚ, a większość powiatów wiejskich takiej nie ma; wskaźniki klimatyczne liczone są ze współrzędnych miasta. Tam, gdzie pomiaru nie wykonano, powiat rysowany jest płaską szarością zamiast koloru ze skali."
+    },
+    "emblemsTitle": "Herby",
+    "emblems": "Każde miasto i województwo pokazane jest z jego herbem, pobranym z Wikimedia Commons poprzez Wikidane i zapisanym wraz z projektem. Większość polskich herbów miejskich należy do domeny publicznej; poniższe są rysunkami współautorów na licencji Creative Commons i wymagają wskazania autorstwa.",
+    "emblemsAllPublicDomain": "Wszystkie użyte herby należą do domeny publicznej."
+  },
+  "units": {
+    "year": "Rok"
+  },
+  "map": {
+    "searchCity": "Szukaj miasta",
+    "allRegions": "Wszystkie regiony",
+    "showing": "{count} z {total} miast",
+    "close": "Zamknij",
+    "fullProfile": "Pełny profil",
+    "noData": "Brak danych",
+    "legendLow": "Niskie",
+    "legendHigh": "Wysokie",
+    "tip": "Przeciągnij, aby obrócić · kliknij miasto",
+    "dataMissing": "Nie wczytano jeszcze danych. Uruchom npm run refresh-data.",
+    "allLabels": "Pokaż nazwy wszystkich miast",
+    "median": "Mediana",
+    "highest": "Najwyższe",
+    "lowest": "Najniższe",
+    "filters": "Filtry",
+    "region": "Region",
+    "noMatches": "Żadne miasto nie pasuje do filtrów.",
+    "cityList": "Lista miast",
+    "loadingMap": "Wczytywanie mapy",
+    "citiesShown": "Pokazano",
+    "clearFilters": "Wyczyść filtry",
+    "resetView": "Powrót do całego kraju",
+    "countyNote": "Powiat, pokazany jako tło. Przewodnik porównuje i szereguje 66 miast; powiaty są tłem, na którym czyta się te dane."
+  }
+}

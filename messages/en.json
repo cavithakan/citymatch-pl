@@ -1,0 +1,116 @@
+{
+  "site": {
+    "name": "CityMatch PL",
+    "tagline": "Every Polish city, from official statistics",
+    "description": "Compare all 66 Polish cities with powiat status using data published by Statistics Poland, the Chief Inspectorate of Environmental Protection and the Institute of Meteorology."
+  },
+  "nav": {
+    "explore": "Explore",
+    "compare": "Compare",
+    "about": "About the data",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Every Polish city, from official statistics",
+    "intro": "66 cities with powiat status, measured on {count} indicators from Statistics Poland, GIOŚ and Open-Meteo. Pick a measure and the map redraws.",
+    "pickMetric": "Measure",
+    "highest": "Highest",
+    "lowest": "Lowest",
+    "hint": "Drag to rotate · click a city to open its profile",
+    "openProfile": "Open profile",
+    "noData": "No figures loaded yet. Run `npm run refresh-data` to pull the indicators from Statistics Poland.",
+    "noDataShort": "No data"
+  },
+  "city": {
+    "backToMap": "All cities",
+    "inVoivodeship": "{voivodeship} voivodeship",
+    "atAGlance": "At a glance",
+    "liveNow": "Right now",
+    "rankOf": "{rank} of {total}",
+    "vsMedian": "vs national median",
+    "noData": "No data",
+    "notPublished": "Not published at this level",
+    "sources": "Sources",
+    "fetchedAt": "Retrieved {date}",
+    "history": "History",
+    "districts": "Districts of {city}",
+    "districtsIntro": "Warsaw is the only Polish city for which Statistics Poland publishes figures per district. {available} of the {total} indicators on this page exist at district level; the rest are listed so the gap stays visible.",
+    "weatherStation": "Weather station",
+    "airStations": "{count} measuring stations"
+  },
+  "compare": {
+    "title": "Weigh what matters to you",
+    "intro": "Move the sliders to say how much each theme counts. The ranking and the map update as you go.",
+    "addCity": "Add a city",
+    "score": "Score",
+    "whyThisRank": "Why this rank",
+    "contribution": "Contribution",
+    "shareLink": "Copy link to this comparison",
+    "copied": "Link copied",
+    "reset": "Reset weights",
+    "selectAtLeast": "Pick at least two cities to compare."
+  },
+  "themes": {
+    "EARNINGS": "Earnings & economy",
+    "HOUSING": "Housing",
+    "LABOUR": "Labour market",
+    "SAFETY": "Safety",
+    "ENVIRONMENT": "Environment",
+    "LIVING": "Climate & living"
+  },
+  "about": {
+    "title": "Where these numbers come from",
+    "sourcesTitle": "Data sources",
+    "methodTitle": "How the score is calculated",
+    "limitsTitle": "What this data cannot tell you",
+    "intro": "CityMatch PL puts figures from five public bodies on one page. Nothing here is a survey, an estimate or a user rating, every number is published by the institution named beside it, and every one can be checked at its source.",
+    "sources": {
+      "gus": "Statistics Poland (GUS), Local Data Bank. Salaries, flat prices, unemployment, business registrations, crime, green space, housing. Published annually per powiat.",
+      "gios": "Chief Inspectorate of Environmental Protection (GIOŚ). The Polish air quality index, averaged across every measuring station inside the city.",
+      "imgw": "Institute of Meteorology and Water Management (IMGW). Current synoptic observations, updated hourly.",
+      "openmeteo": "Open-Meteo historical archive. A full year of daily temperature, rainfall and sunshine, reduced to four figures per city.",
+      "nbp": "National Bank of Poland. Daily reference exchange rates.",
+      "osm": "OpenStreetMap and the polska-geojson project. Administrative boundaries for the map."
+    },
+    "method": "Each indicator is rescaled onto 0-100 against the cities being compared, with the direction set per indicator, a high salary scores well, a high flat price does not. Indicators are averaged within their theme, and the six themes are combined using the weights you choose. The method is Simple Additive Weighting, and because the scale is relative to the set, the same city scores differently in different comparisons.",
+    "limits": {
+      "district": "Warsaw is the only Polish city whose districts appear in the Local Data Bank. Even there, nine of the indicators on this site stop at the city boundary, salary, flat prices, unemployment and crime among them.",
+      "health": "Hospital beds, clinics and nurseries are published per gmina rather than per city, so they are not included.",
+      "air": "The air quality figure used for the map and the score is a snapshot taken when the data was last refreshed. The city pages show the live reading instead.",
+      "years": "Not every series is published for the same year. Each figure is labelled with the year it belongs to rather than being forced onto a common one.",
+      "counties": "The map colours all 380 Polish counties, but the guide is about the 66 that are cities. Counties are shown with the same GUS figures on the same scale, and can be read by pointing at them; they are not ranked, compared or given a page, because a county is not somewhere you move to — it is the ground a city's figure should be read against.",
+      "countyGaps": "Five measures are missing for counties: air quality, and the three climate figures. Air quality is tied to a GIOŚ measuring station and most rural counties have none; the climate figures are computed from a city's coordinates. Where a measure was not taken, the county is drawn in flat grey rather than given a colour from the scale."
+    },
+    "emblemsTitle": "Coats of arms",
+    "emblems": "Each city and voivodeship is shown with its coat of arms, taken from Wikimedia Commons through Wikidata and stored with the project. Most Polish municipal arms are in the public domain; the ones below are contributor drawings released under Creative Commons and are credited as their licences require.",
+    "emblemsAllPublicDomain": "Every emblem used here is in the public domain."
+  },
+  "units": {
+    "year": "Year"
+  },
+  "map": {
+    "searchCity": "Search a city",
+    "allRegions": "All regions",
+    "showing": "{count} of {total} cities",
+    "close": "Close",
+    "fullProfile": "Full profile",
+    "noData": "No data",
+    "legendLow": "Low",
+    "legendHigh": "High",
+    "tip": "Drag to rotate · click a city",
+    "dataMissing": "No figures loaded yet. Run npm run refresh-data.",
+    "allLabels": "Name every city",
+    "median": "Median",
+    "highest": "Highest",
+    "lowest": "Lowest",
+    "filters": "Filters",
+    "region": "Region",
+    "noMatches": "No cities match the current filters.",
+    "cityList": "City list",
+    "loadingMap": "Loading the map",
+    "citiesShown": "Shown",
+    "clearFilters": "Clear filters",
+    "resetView": "Back to the whole country",
+    "countyNote": "A county, shown for context. The guide ranks and compares the 66 cities; counties are the ground those figures sit in."
+  }
+}

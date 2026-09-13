@@ -1,0 +1,498 @@
+{
+  "cities": {
+    "chelm": {
+      "name": "Chełm",
+      "file": "cities/chelm.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Che%C5%82m_COA_1.svg"
+    },
+    "krakow": {
+      "name": "Kraków",
+      "file": "cities/krakow.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Krak%C3%B3w_COA.svg"
+    },
+    "radom": {
+      "name": "Radom",
+      "file": "cities/radom.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Radom_COA.svg"
+    },
+    "siedlce": {
+      "name": "Siedlce",
+      "file": "cities/siedlce.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Siedlce_COA.svg"
+    },
+    "leszno": {
+      "name": "Leszno",
+      "file": "cities/leszno.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Leszno_COA.svg"
+    },
+    "lomza": {
+      "name": "Łomża",
+      "file": "cities/lomza.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_%C5%81om%C5%BCa_COA.svg"
+    },
+    "wroclaw": {
+      "name": "Wrocław",
+      "file": "cities/wroclaw.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Herb_wroclaw.svg"
+    },
+    "sosnowiec": {
+      "name": "Sosnowiec",
+      "file": "cities/sosnowiec.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Sosnowiec_COA.svg"
+    },
+    "gliwice": {
+      "name": "Gliwice",
+      "file": "cities/gliwice.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Gliwice_COA.svg"
+    },
+    "piekary-slaskie": {
+      "name": "Piekary Śląskie",
+      "file": "cities/piekary-slaskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Piekary_%C5%9Al%C4%85skie_COA.svg"
+    },
+    "jaworzno": {
+      "name": "Jaworzno",
+      "file": "cities/jaworzno.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Jaworzno_COA_alt.svg"
+    },
+    "torun": {
+      "name": "Toruń",
+      "file": "cities/torun.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Toru%C5%84_COA.svg"
+    },
+    "jelenia-gora": {
+      "name": "Jelenia Góra",
+      "file": "cities/jelenia-gora.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Jelenia_G%C3%B3ra_COA_1.svg"
+    },
+    "ostroleka": {
+      "name": "Ostrołęka",
+      "file": "cities/ostroleka.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Ostro%C5%82%C4%99ka_COA.svg"
+    },
+    "gdynia": {
+      "name": "Gdynia",
+      "file": "cities/gdynia.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Gdynia_COA.svg"
+    },
+    "swinoujscie": {
+      "name": "Świnoujście",
+      "file": "cities/swinoujscie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_%C5%9Awinouj%C5%9Bcie_COA_1.svg"
+    },
+    "opole": {
+      "name": "Opole",
+      "file": "cities/opole.png",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Opole_COA.svg"
+    },
+    "przemysl": {
+      "name": "Przemyśl",
+      "file": "cities/przemysl.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Przemy%C5%9Bl_COA.svg"
+    },
+    "lublin": {
+      "name": "Lublin",
+      "file": "cities/lublin.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Lublin_COA_1.svg"
+    },
+    "tarnow": {
+      "name": "Tarnów",
+      "file": "cities/tarnow.png",
+      "license": "CC BY-SA 2.5",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Tarn%C3%B3w_COA.svg"
+    },
+    "siemianowice-slaskie": {
+      "name": "Siemianowice Śląskie",
+      "file": "cities/siemianowice-slaskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Siemianowice_COA.svg"
+    },
+    "elblag": {
+      "name": "Elbląg",
+      "file": "cities/elblag.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Elbl%C4%85g_COA.svg"
+    },
+    "bytom": {
+      "name": "Bytom",
+      "file": "cities/bytom.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Bytom_COA.svg"
+    },
+    "zielona-gora": {
+      "name": "Zielona Góra",
+      "file": "cities/zielona-gora.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Zielona_G%C3%B3ra_COA.svg"
+    },
+    "skierniewice": {
+      "name": "Skierniewice",
+      "file": "cities/skierniewice.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Skierniewice_COA.svg"
+    },
+    "gdansk": {
+      "name": "Gdańsk",
+      "file": "cities/gdansk.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Gda%C5%84sk_COA.svg"
+    },
+    "lodz": {
+      "name": "Łódź",
+      "file": "cities/lodz.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_%C5%81%C3%B3d%C5%BA_COA.svg"
+    },
+    "poznan": {
+      "name": "Poznań",
+      "file": "cities/poznan.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Pozna%C5%84_COA.svg"
+    },
+    "konin": {
+      "name": "Konin",
+      "file": "cities/konin.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Konin_COA.svg"
+    },
+    "tarnobrzeg": {
+      "name": "Tarnobrzeg",
+      "file": "cities/tarnobrzeg.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Tarnobrzeg_COA.svg"
+    },
+    "zamosc": {
+      "name": "Zamość",
+      "file": "cities/zamosc.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Zamo%C5%9B%C4%87_COA.svg"
+    },
+    "plock": {
+      "name": "Płock",
+      "file": "cities/plock.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_P%C5%82ock_COA_incorrect.svg"
+    },
+    "ruda-slaska": {
+      "name": "Ruda Śląska",
+      "file": "cities/ruda-slaska.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Ruda_%C5%9Al%C4%85ska_alt_COA.svg"
+    },
+    "chorzow": {
+      "name": "Chorzów",
+      "file": "cities/chorzow.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Chorz%C3%B3w_herb.svg"
+    },
+    "katowice": {
+      "name": "Katowice",
+      "file": "cities/katowice.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:Katowice_Herb.svg"
+    },
+    "walbrzych": {
+      "name": "Wałbrzych",
+      "file": "cities/walbrzych.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Wa%C5%82brzych_COA.svg"
+    },
+    "wloclawek": {
+      "name": "Włocławek",
+      "file": "cities/wloclawek.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_W%C5%82oc%C5%82awek_COA.svg"
+    },
+    "szczecin": {
+      "name": "Szczecin",
+      "file": "cities/szczecin.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Szczecin_COA.svg"
+    },
+    "suwalki": {
+      "name": "Suwałki",
+      "file": "cities/suwalki.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Suwa%C5%82ki_COA.svg"
+    },
+    "kielce": {
+      "name": "Kielce",
+      "file": "cities/kielce.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Kielce_COA.svg"
+    },
+    "koszalin": {
+      "name": "Koszalin",
+      "file": "cities/koszalin.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Koszalin_COA.svg"
+    },
+    "bielsko-biala": {
+      "name": "Bielsko-Biała",
+      "file": "cities/bielsko-biala.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Bielsko-Bia%C5%82a_COA.svg"
+    },
+    "legnica": {
+      "name": "Legnica",
+      "file": "cities/legnica.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Legnica_COA.svg"
+    },
+    "sopot": {
+      "name": "Sopot",
+      "file": "cities/sopot.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Sopot_COA.svg"
+    },
+    "kalisz": {
+      "name": "Kalisz",
+      "file": "cities/kalisz.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Kalisz_COA.svg"
+    },
+    "tychy": {
+      "name": "Tychy",
+      "file": "cities/tychy.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Tychy_COA.svg"
+    },
+    "rybnik": {
+      "name": "Rybnik",
+      "file": "cities/rybnik.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Rybnik_COA.svg"
+    },
+    "biala-podlaska": {
+      "name": "Biała Podlaska",
+      "file": "cities/biala-podlaska.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Bia%C5%82a_Podlaska_COA.svg"
+    },
+    "nowy-sacz": {
+      "name": "Nowy Sącz",
+      "file": "cities/nowy-sacz.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Nowy_S%C4%85cz_COA.svg"
+    },
+    "gorzow-wielkopolski": {
+      "name": "Gorzów Wielkopolski",
+      "file": "cities/gorzow-wielkopolski.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Gorz%C3%B3w_Wielkopolski_COA.svg"
+    },
+    "slupsk": {
+      "name": "Słupsk",
+      "file": "cities/slupsk.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_S%C5%82upsk_COA.svg"
+    },
+    "jastrzebie-zdroj": {
+      "name": "Jastrzębie-Zdrój",
+      "file": "cities/jastrzebie-zdroj.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Jastrz%C4%99bie-Zdr%C3%B3j_COA.svg"
+    },
+    "warszawa": {
+      "name": "Warszawa",
+      "file": "cities/warszawa.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Warszawa_COA.svg"
+    },
+    "dabrowa-gornicza": {
+      "name": "Dąbrowa Górnicza",
+      "file": "cities/dabrowa-gornicza.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_D%C4%85browa_G%C3%B3rnicza_COA.svg"
+    },
+    "myslowice": {
+      "name": "Mysłowice",
+      "file": "cities/myslowice.png",
+      "license": "CC BY-SA 3.0",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Mys%C5%82owice_COA.svg"
+    },
+    "krosno": {
+      "name": "Krosno",
+      "file": "cities/krosno.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Krosno_COA.svg"
+    },
+    "rzeszow": {
+      "name": "Rzeszów",
+      "file": "cities/rzeszow.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Rzesz%C3%B3w_COA.svg"
+    },
+    "piotrkow-trybunalski": {
+      "name": "Piotrków Trybunalski",
+      "file": "cities/piotrkow-trybunalski.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Piotrk%C3%B3w_Trybunalski_COA.svg"
+    },
+    "bialystok": {
+      "name": "Białystok",
+      "file": "cities/bialystok.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Bia%C5%82ystok_COA.svg"
+    },
+    "swietochlowice": {
+      "name": "Świętochłowice",
+      "file": "cities/swietochlowice.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_%C5%9Awi%C4%99toch%C5%82owice_COA.svg"
+    },
+    "zabrze": {
+      "name": "Zabrze",
+      "file": "cities/zabrze.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Zabrze_COA.svg"
+    },
+    "olsztyn": {
+      "name": "Olsztyn",
+      "file": "cities/olsztyn.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Olsztyn_COA.svg"
+    },
+    "czestochowa": {
+      "name": "Częstochowa",
+      "file": "cities/czestochowa.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Cz%C4%99stochowa_COA.svg"
+    },
+    "bydgoszcz": {
+      "name": "Bydgoszcz",
+      "file": "cities/bydgoszcz.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Bydgoszcz_COA.svg"
+    },
+    "grudziadz": {
+      "name": "Grudziądz",
+      "file": "cities/grudziadz.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_Grudzi%C4%85dz_COA.svg"
+    },
+    "zory": {
+      "name": "Żory",
+      "file": "cities/zory.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_%C5%BBory_COA.svg"
+    }
+  },
+  "voivodeships": {
+    "śląskie": {
+      "name": "Śląskie",
+      "file": "voivodeships/śląskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_%C5%9Bl%C4%85skie_COA.svg"
+    },
+    "opolskie": {
+      "name": "Opolskie",
+      "file": "voivodeships/opolskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_opolskie_COA.svg"
+    },
+    "wielkopolskie": {
+      "name": "Wielkopolskie",
+      "file": "voivodeships/wielkopolskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_wielkopolskie_COA.svg"
+    },
+    "zachodniopomorskie": {
+      "name": "Zachodniopomorskie",
+      "file": "voivodeships/zachodniopomorskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_zachodniopomorskie_COA.svg"
+    },
+    "świętokrzyskie": {
+      "name": "Świętokrzyskie",
+      "file": "voivodeships/świętokrzyskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_%C5%9Bwi%C4%99tokrzyskie_COA.svg"
+    },
+    "kujawsko-pomorskie": {
+      "name": "Kujawsko-pomorskie",
+      "file": "voivodeships/kujawsko-pomorskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_kujawsko-pomorskie_COA.svg"
+    },
+    "podlaskie": {
+      "name": "Podlaskie",
+      "file": "voivodeships/podlaskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_podlaskie_COA.svg"
+    },
+    "dolnośląskie": {
+      "name": "Dolnośląskie",
+      "file": "voivodeships/dolnośląskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_dolno%C5%9Bl%C4%85skie_COA.svg"
+    },
+    "podkarpackie": {
+      "name": "Podkarpackie",
+      "file": "voivodeships/podkarpackie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_podkarpackie_COA.svg"
+    },
+    "małopolskie": {
+      "name": "Małopolskie",
+      "file": "voivodeships/małopolskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_ma%C5%82opolskie_COA.svg"
+    },
+    "pomorskie": {
+      "name": "Pomorskie",
+      "file": "voivodeships/pomorskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_pomorskie_COA.svg"
+    },
+    "warmińsko-mazurskie": {
+      "name": "Warmińsko-mazurskie",
+      "file": "voivodeships/warmińsko-mazurskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_warmi%C5%84sko-mazurskie_COA.svg"
+    },
+    "łódzkie": {
+      "name": "Łódzkie",
+      "file": "voivodeships/łódzkie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_%C5%82%C3%B3dzkie_COA.svg"
+    },
+    "mazowieckie": {
+      "name": "Mazowieckie",
+      "file": "voivodeships/mazowieckie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_mazowieckie_COA.svg"
+    },
+    "lubelskie": {
+      "name": "Lubelskie",
+      "file": "voivodeships/lubelskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_lubelskie_COA.svg"
+    },
+    "lubuskie": {
+      "name": "Lubuskie",
+      "file": "voivodeships/lubuskie.png",
+      "license": "Public domain",
+      "source": "https://commons.wikimedia.org/wiki/File:POL_wojew%C3%B3dztwo_lubuskie_COA.svg"
+    }
+  }
+}

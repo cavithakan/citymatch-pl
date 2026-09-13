@@ -1,0 +1,236 @@
+// CityMatch PL — data model
+//
+// The model separates three concerns:
+//   1. Geography      (City, District)          — polygons rendered by the 3D map
+//   2. Indicator defs (Indicator)               — metric catalogue, stored as DATA not code
+//   3. Observations   (CityIndicator, ...)      — one row per unit/indicator/year
+//
+// Keeping indicator definitions in a table means adding a new metric is one INSERT
+// plus a refresh run, with no code change in the scoring or rendering layers.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// Thematic grouping used by the city page and the weighting sliders.
+enum Theme {
+  EARNINGS
+  HOUSING
+  LABOUR
+  SAFETY
+  ENVIRONMENT
+  LIVING
+}
+
+/// Whether a high raw value is good (BENEFIT) or bad (COST).
+/// Drives the min–max normalisation direction in the scoring engine.
+enum Direction {
+  BENEFIT
+  COST
+}
+
+/// What an indicator is for. Not every stored value is meant to be scored:
+/// population is worth showing but meaningless to rank, and some values exist
+/// only as the denominator of a derived metric.
+enum IndicatorRole {
+  /// Shown on the city page and included in the weighted score.
+  SCORED
+  /// Shown on the city page, never scored (e.g. population).
+  DISPLAY_ONLY
+  /// Fetched only to compute a derived metric; never shown on its own.
+  INPUT
+}
+
+/// Where an indicator's values come from.
+enum Source {
+  GUS_BDL
+  GIOS
+  OPEN_METEO
+  DERIVED
+}
+
+/// A Polish city with powiat status (miasto na prawach powiatu). 66 rows.
+model City {
+  id               Int      @id @default(autoincrement())
+  slug             String   @unique
+  name             String
+  /// GUS BDL unit id, level 5. Example: Warszawa = 071412865000
+  bdlUnitId        String   @unique
+  voivodeship      String
+  lat              Float
+  lon              Float
+  /// GeoJSON geometry (Polygon or MultiPolygon) in EPSG:4326.
+  geometry         Json
+  wikipediaTitlePl String?
+  wikipediaTitleEn String?
+
+  districts  District[]
+  indicators CityIndicator[]
+  climate    CityClimate?
+
+  @@index([voivodeship])
+}
+
+/// A land county — one of the 314 powiats that are not cities.
+///
+/// Its own table rather than a `kind` column on City, because the two are not
+/// interchangeable here. A city has districts, a Wikipedia profile, a page of
+/// its own and a place in every ranking; a land county has none of those. Held
+/// in one table, four rows out of five would carry a null in each of those
+/// columns, and every query about cities would have to remember to exclude
+/// them.
+///
+/// Counties exist for one reason: so the map is a map of Poland. Every one of
+/// the 18 GUS variables is published for all 380 powiats, and the same request
+/// that fetches the cities already returns the counties — the map was empty
+/// between the cities only because this data was being thrown away.
+model County {
+  id          Int    @id @default(autoincrement())
+  slug        String @unique
+  name        String
+  /// GUS BDL unit id, level 5.
+  bdlUnitId   String @unique
+  voivodeship String
+  /// GeoJSON geometry (Polygon or MultiPolygon) in EPSG:4326.
+  geometry    Json
+
+  indicators CountyIndicator[]
+
+  @@index([voivodeship])
+}
+
+model CountyIndicator {
+  countyId    Int
+  indicatorId Int
+  year        Int
+  value       Float
+
+  county    County    @relation(fields: [countyId], references: [id], onDelete: Cascade)
+  indicator Indicator @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+
+  @@id([countyId, indicatorId, year])
+  @@index([indicatorId, year])
+}
+
+/// A Warsaw dzielnica. 18 rows — no other Polish city publishes district-level
+/// statistics in BDL, so this table only ever contains Warsaw's districts.
+model District {
+  id        Int    @id @default(autoincrement())
+  slug      String @unique
+  name      String
+  /// GUS BDL unit id, level 6. Example: Mokotów = 071412865058
+  bdlUnitId String @unique
+  cityId    Int
+  city      City   @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  geometry  Json
+
+  indicators DistrictIndicator[]
+
+  @@index([cityId])
+}
+
+/// Metric catalogue. One row per indicator shown anywhere in the app.
+model Indicator {
+  id      Int    @id @default(autoincrement())
+  /// Stable internal key used in URLs and code, e.g. "avg_salary".
+  code    String @unique
+  /// GUS BDL variable id. Null for climate and air-quality indicators.
+  bdlVarId Int?
+  source  Source
+  theme   Theme
+  /// Unit shown next to the value. Two columns, for the same reason the labels
+  /// need two: GUS units are Polish phrases ("na 10 tys.", "Polska = 100"), and
+  /// leaving them untranslated puts Polish inside every English figure.
+  unit    String
+  unitEn  String
+  labelPl String
+  labelEn String
+  /// Longer explanation shown in the indicator card tooltip.
+  descPl  String?
+  descEn  String?
+  direction Direction
+  role      IndicatorRole @default(SCORED)
+  /// Whether a stored zero means "none" or "not published".
+  ///
+  /// The Local Data Bank does not omit a series it has yet to publish — it
+  /// returns the row with a value of zero. For most indicators zero is
+  /// impossible (no city has an average salary of 0 zl), so a zero is a
+  /// placeholder and must not be read as a measurement. For a few it is a real
+  /// observation: a net migration balance can genuinely be zero, and a town
+  /// with no hotels really does have no tourist accommodation.
+  zeroIsMissing Boolean @default(true)
+  /// False for the 9 indicators GUS does not publish per dzielnica.
+  /// The district panel renders these as "not published at district level"
+  /// rather than hiding them, so the data gap stays visible.
+  availableAtDistrict Boolean @default(false)
+  /// Display order inside its theme.
+  sortOrder Int @default(0)
+
+  cityValues     CityIndicator[]
+  countyValues   CountyIndicator[]
+  districtValues DistrictIndicator[]
+
+  @@index([theme])
+}
+
+model CityIndicator {
+  cityId      Int
+  indicatorId Int
+  year        Int
+  value       Float
+
+  city      City      @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  indicator Indicator @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+
+  @@id([cityId, indicatorId, year])
+  @@index([indicatorId, year])
+}
+
+model DistrictIndicator {
+  districtId  Int
+  indicatorId Int
+  year        Int
+  value       Float
+
+  district  District  @relation(fields: [districtId], references: [id], onDelete: Cascade)
+  indicator Indicator @relation(fields: [indicatorId], references: [id], onDelete: Cascade)
+
+  @@id([districtId, indicatorId, year])
+  @@index([indicatorId, year])
+}
+
+/// Climate aggregates derived from one Open-Meteo archive call per city
+/// (366 daily records reduced to four numbers).
+model CityClimate {
+  cityId          Int      @id
+  city            City     @relation(fields: [cityId], references: [id], onDelete: Cascade)
+  /// Reference year the daily series was taken from.
+  year            Int
+  /// Days with mean temperature between 15 and 25 °C.
+  comfortableDays Int
+  sunshineHours   Float
+  /// Days with more than 1 mm of precipitation.
+  rainyDays       Int
+  avgTemp         Float
+  fetchedAt       DateTime @default(now())
+}
+
+/// TTL-based response cache for the live providers (GIOŚ, IMGW, NBP, Wikipedia).
+/// Bulk GUS data is loaded by the refresh script instead and lives in the
+/// indicator tables, so it never passes through here.
+model ApiCache {
+  provider  String
+  cacheKey  String   @id
+  payload   Json
+  fetchedAt DateTime @default(now())
+  expiresAt DateTime
+  hitCount  Int      @default(0)
+
+  @@index([provider])
+  @@index([expiresAt])
+}

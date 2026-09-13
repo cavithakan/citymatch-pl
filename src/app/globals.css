@@ -1,26 +1,149 @@
 @import "tailwindcss";
 
+/*
+  CityMatch PL is a map application, not a document: the map fills the viewport
+  and everything else floats above it on glass. The palette is built for that —
+  a deep, slightly blue dark ground so the data colours can be luminous without
+  glaring, and panels that sit on the map rather than beside it.
+
+  The data ramp keeps its cartographic logic (blue-grey water → buff → brick
+  red), pushed brighter to hold up against the dark ground. Blue → red rather
+  than green → red, because green and red is the one pair that collapses under
+  the commonest form of colour blindness, and colour is doing real work here.
+*/
+
+@theme {
+  /* Ground */
+  --color-abyss: #0a1016;
+  --color-deep: #0e161e;
+  --color-shelf: #16212c;
+
+  /* Glass panels */
+  --color-glass: #101a23;
+  --color-glass-line: #24333f;
+  --color-glass-hover: #1a2732;
+
+  /* Type on dark. Raised from the first pass: the two lower steps were being
+     read as disabled rather than secondary, which is the commonest way a dark
+     interface loses its supporting text. */
+  --color-bright: #f4f9fb;
+  --color-muted: #b8c8d2;
+  --color-faint: #8ba0ad;
+
+  /* Data ramp, low → high */
+  --color-ramp-1: #4a7c94;
+  --color-ramp-2: #7fa298;
+  --color-ramp-3: #d3c9a8;
+  --color-ramp-4: #e09355;
+  --color-ramp-5: #d94f43;
+
+  /* Accent: brass, used only for the current selection */
+  --color-brass: #f0b752;
+
+  --font-display: var(--font-brygada), Georgia, serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background: var(--color-abyss);
+  color: var(--color-bright);
+  font-family: var(--font-sans);
+  /* Figures are read in columns throughout; keep them aligned. */
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brass);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Panels float on the map; the blur is what separates them from it. */
+.glass {
+  background: color-mix(in srgb, var(--color-glass) 86%, transparent);
+  backdrop-filter: blur(18px) saturate(1.1);
+  -webkit-backdrop-filter: blur(18px) saturate(1.1);
+  border: 1px solid var(--color-glass-line);
+  box-shadow: 0 18px 48px -20px rgb(0 0 0 / 0.8);
+}
+
+/* WebKit draws its own clear button inside type="search", which would sit
+   beside ours. The input keeps the search semantics; only the duplicate
+   control is removed. */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Scrollbars inside panels, kept out of the way. */
+.thin-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-glass-line) transparent;
+}
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-glass-line);
+  border-radius: 3px;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateX(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-panel-in {
+  animation: panel-in 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-fade-up {
+  animation: fade-up 0.4s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
